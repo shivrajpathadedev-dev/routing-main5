@@ -3,14 +3,45 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { FairsComponent } from './component/fairs/fairs.component';
+import { ProductDashboardComponent } from './component/product-dashboard/product-dashboard.component';
+import { UsersComponent } from './component/users/users.component';
+import { HomeComponent } from './component/home/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ProductComponent } from './component/product-dashboard/product/product.component';
+import { ProductFormComponent } from './component/product-dashboard/product-form/product-form.component';
+import { GetConfirmComponent } from './component/get-confirm/get-confirm.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    FairsComponent,
+    ProductDashboardComponent,
+    UsersComponent,
+    HomeComponent,
+    ProductComponent,
+    ProductFormComponent,
+    GetConfirmComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatIconModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
