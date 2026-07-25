@@ -1,6 +1,6 @@
 
 .custom-navbar {
-  background-color: #1e3a8a; // Blue
+  background-color: #1e3a8a; 
 }
 
 .custom-navbar .navbar-brand,
@@ -12,4 +12,41 @@
 .custom-navbar .nav-link.active,
 .custom-navbar .navbar-brand.active {
   color: #ffd700;
+}
+
+.custom-navbar {
+  background-color: #1e3a8a;
+}
+
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link {
+  color: #fff;
+}
+
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link.active,
+.custom-navbar .navbar-brand.active {
+  color: #ffd700;
+}
+
+/* Navbar full width */
+.custom-navbar .navbar-collapse {
+  display: flex;
+  align-items: center;
+}
+
+/* Logout button right side */
+.custom-navbar .logout-btn {
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.custom-navbar .navbar-collapse {
+  display: flex !important;
+  width: 100%;
+}
+
+.custom-navbar .logout-btn {
+  margin-left: auto !important;
+  margin-right: 15px;
 }

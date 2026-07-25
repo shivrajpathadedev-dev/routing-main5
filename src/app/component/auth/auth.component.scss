@@ -1,0 +1,98 @@
+
+
+.main-auth{
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+   
+ background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+
+    form {
+.ng-touched.ng-invalid,
+    .ng-dirty.ng-invalid{
+        border: 2px solid red;
+    }
+}
+}
+
+.auth-card{
+    width:430px;
+    border:none;
+    border-radius:15px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+.card-body{
+    padding:35px;
+}
+
+.form-control{
+    height:48px;
+    border-radius:8px;
+}
+
+.btn{
+    height:48px;
+    border-radius:8px;
+    font-weight:600;
+}
+
+h2{
+    font-weight:700;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 60px;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 50px;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border: none;
+  background: transparent;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.eye-btn mat-icon {
+  font-size: 21px;
+  color: #555;
+}
+
+.eye-btn:hover mat-icon {
+  color: #3f51b5;
+}

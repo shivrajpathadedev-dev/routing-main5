@@ -1,0 +1,27 @@
+.list-group-item {
+  cursor: pointer;
+}
+
+.list-group-item.active {
+  background-color: #1976d2;
+  color: #fff;
+}
+
+.badge {
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.badge-primary {
+  background-color: #1976d2;
+}
+
+.badge-success {
+  background-color: #28a745;
+}
+
+.badge-warning {
+  background-color: #ffc107;
+  color: #000;
+}

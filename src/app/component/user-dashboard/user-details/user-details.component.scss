@@ -1,0 +1,89 @@
+/* Main details row */
+.user-details-row {
+  margin-top: 0;
+  align-items: flex-start;
+}
+
+/* Profile card */
+.profile-card {
+  margin-top: 0;
+  padding: 25px 18px;
+  text-align: center;
+  border-radius: 12px;
+  border-top: 5px solid #3f51b5;
+}
+
+/* Profile Image */
+.user-img {
+  width: 135px;
+  height: 135px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 20px;
+  border: 4px solid #3f51b5;
+  padding: 3px;
+}
+
+/* User Role */
+.profile-card strong {
+  justify-content: center;
+  color: #3f51b5;
+  margin-bottom: 15px;
+}
+
+/* Description */
+.profile-card p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Right side cards */
+.info-card {
+  margin-top: 0;
+  padding: 20px 25px;
+  border-radius: 12px;
+  border-left: 5px solid #3f51b5;
+}
+
+/* Heading */
+.info-card h5 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Status */
+.badge {
+  padding: 6px 12px;
+  margin-left: 5px;
+  border-radius: 15px;
+  color: white;
+}
+
+.badge-success {
+  background-color: #28a745;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+}
+
+/* Skills */
+mat-chip-list {
+  display: flex;
+  justify-content: center;
+}
+
+.skill-chip {
+  margin: 5px !important;
+}
+
+/* Address inner row */
+.address-row {
+  margin-top: 0 !important;
+}
+
+/* Address divider */
+.address-row .col-md-6:first-child {
+  border-right: 1px solid #ddd;
+}
