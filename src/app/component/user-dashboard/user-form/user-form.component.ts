@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Iuser } from 'src/app/models/user';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { UserService } from 'src/app/services/user.service';
+import { UtilityService } from 'src/app/services/utility.service';
 
 @Component({
   selector: 'app-user-form',
@@ -11,14 +12,16 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
- userForm!: FormGroup;
+  userForm!: FormGroup;
   usersId!: string;
+  userDetails!: Iuser
   isInEditMode: boolean = false;
   constructor(
-    private _usersservice:UserService,
+    private _usersservice: UserService,
     private _router: Router,
     private _snakbar: SnackbarService,
-    private _routes: ActivatedRoute
+    private _routes: ActivatedRoute,
+    private _uilty: UtilityService
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +43,9 @@ export class UserFormComponent implements OnInit {
           let currentAdd = this.formControl['address'].get('current')?.value;
           this.formControl['address'].get('permanent')?.patchValue(currentAdd)
           this.formControl['address'].get('permanent')?.disable()
+        } else if (this.isInEditMode && !val) {
+          this.formControl['address'].get('permanent')?.patchValue(this.userDetails.address.permanent)
+          this.formControl['address'].get('permanent')?.enable()
         } else {
           this.formControl['address'].get('permanent')?.reset()
           this.formControl['address'].get('permanent')?.enable()
@@ -47,18 +53,17 @@ export class UserFormComponent implements OnInit {
       })
   }
 
- Onremove() {
-  if (this.skillsArr.length > 1) {
-    this.skillsArr.removeAt(this.skillsArr.length - 1);
-  } else {
-    alert('At least one skill is required.');
+  Onremove() {
+    if (this.skillsArr.length > 1) {
+      this.skillsArr.removeAt(this.skillsArr.length - 1);
+    } else {
+      alert('At least one skill is required.');
+    }
   }
-}
-
   createUserForm() {
     this.userForm = new FormGroup({
       userName: new FormControl(null, [Validators.required]),
-      userRole: new FormControl('Team Lead'),
+      userRole: new FormControl('buyer'),
       profileDescription: new FormControl(null, [Validators.required]),
       profileImage: new FormControl(null, [Validators.required]),
       experienceYears: new FormControl(null, [Validators.required]),
@@ -83,12 +88,12 @@ export class UserFormComponent implements OnInit {
     })
   }
 
-addskillcontrol() {
-  if (this.formControl['skills'].valid && this.skillsArr.length < 5) {
-    let skillControl = new FormControl(null, [Validators.required]);
-    this.skillsArr.push(skillControl);
+  addskillcontrol() {
+    if (this.formControl['skills'].valid) {
+      let skillControl = new FormControl(null, [Validators.required])
+      this.skillsArr.push(skillControl)
+    }
   }
-}
 
   get formControl() {
     return this.userForm.controls
@@ -98,13 +103,14 @@ addskillcontrol() {
     return this.formControl['skills'] as FormArray
   }
 
+
   onUsersubmit() {
     if (this.userForm.invalid) {
       console.log(this.userForm);
       this.userForm.markAllAsTouched();
       return;
     }
-    let userDetails:Iuser= {
+    let userDetails: Iuser = {
       ...this.userForm.getRawValue(),
       userId: Date.now().toString()
     };
@@ -130,11 +136,19 @@ addskillcontrol() {
           .subscribe({
             next: data => {
               console.log(data);
+              this.userDetails = data
               this.userForm.patchValue(data)
+              this._uilty.utilitycontrol(this.userDetails.skills, this.skillsArr)
+              if (this.formControl['address'].get('current')?.valid) {
+                this.formControl['isAddSame'].enable()
+                this.formControl['address'].get('permanent')?.patchValue(this.userDetails.address.permanent)
+              }
             },
+
             error: err => {
               console.log(err.msg);
             }
+
           })
       }
     })
@@ -146,9 +160,10 @@ addskillcontrol() {
       return;
     } else {
       let upd_obj = {
-        ...this.userForm.value,
+        ...this.userForm.getRawValue(),
         userId: this.usersId
       }
+
       this._usersservice.updateuser(upd_obj)
         .subscribe({
           next: data => {
@@ -163,9 +178,9 @@ addskillcontrol() {
     }
   }
 
-  canDeactivate(){
-    if(this.userForm.dirty&&this.isInEditMode){
-      let getconfirm=confirm(`Are you sure do you want to diascard this changes?`)
+  canDeactivate() {
+    if (this.userForm.dirty && this.isInEditMode) {
+      let getconfirm = confirm(`Are you sure do tou want to disacard the changes?`)
       return getconfirm
     }
     return true
